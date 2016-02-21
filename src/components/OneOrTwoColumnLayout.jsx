@@ -1,11 +1,11 @@
-import classnames from 'classnames'
-import React, {PropTypes} from 'react'
+import classnames from 'classnames';
+import React, {PropTypes} from 'react';
 
-import css from './OneOrTwoColumnLayout.css'
+import css from './OneOrTwoColumnLayout.css';
 
 const OneOrTwoColumnLayout = ({
   left,
-  right,
+  right
 }) =>
   <div className={css.self}>
     <div className={classnames({[css.left]: true, [css.leftOpen]: left})}>
@@ -14,11 +14,11 @@ const OneOrTwoColumnLayout = ({
     <div className={classnames({[css.right]: true, [css.rightOpen]: right})}>
       {right}
     </div>
-  </div>
+  </div>;
 
 OneOrTwoColumnLayout.propTypes = {
   left: PropTypes.element,
-  right: PropTypes.element,
-}
+  right: PropTypes.element
+};
 
-export default OneOrTwoColumnLayout
+export default OneOrTwoColumnLayout;

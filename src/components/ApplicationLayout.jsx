@@ -1,12 +1,12 @@
-import classnames from 'classnames'
-import React, {PropTypes} from 'react'
+import classnames from 'classnames';
+import React, {PropTypes} from 'react';
 
-import css from './ApplicationLayout.css'
-import Link from './Link'
+import css from './ApplicationLayout.css';
+import Link from './Link';
 
 const ApplicationLayout = ({
   children,
-  locationName,
+  locationName
 }) =>
   <div className={css.self}>
     <nav className={css.navbar}>
@@ -14,7 +14,7 @@ const ApplicationLayout = ({
         name='documentList'
         className={classnames({
           'link': true,
-          [css.active]: locationName == 'documentList' || locationName == 'documentEdit',
+          [css.active]: locationName === 'documentList' || locationName === 'documentEdit'
         })}
       >
         Documents
@@ -23,11 +23,11 @@ const ApplicationLayout = ({
     <main className={css.content}>
       {children}
     </main>
-  </div>
+  </div>;
 
 ApplicationLayout.propTypes = {
   children: PropTypes.element.isRequired,
-  locationName: PropTypes.string,
-}
+  locationName: PropTypes.string
+};
 
-export default ApplicationLayout
+export default ApplicationLayout;

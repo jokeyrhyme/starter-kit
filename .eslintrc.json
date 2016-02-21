@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "standard-react"
+  ],
+  "rules": {
+    /* https://github.com/Flet/eslint-config-semistandard */
+    "semi": [2, "always"],
+    "no-extra-semi": 2,
+    "semi-spacing": [2, { "before": false, "after": true }]
+  }
+}

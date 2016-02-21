@@ -1,19 +1,19 @@
-import classnames from 'classnames'
-import React, {PropTypes} from 'react'
-import * as actions from '../actions/documentListView'
+import classnames from 'classnames';
+import React, {PropTypes} from 'react';
+import * as actions from '../actions/documentListView';
 
-import css from './DocumentList.css'
-import Link from './Link'
+import css from './DocumentList.css';
+import Link from './Link';
 
-function mapValue(fn) {
-  return e => fn(e.target.value)
+function mapValue (fn) {
+  return (e) => fn(e.target.value);
 }
 
 const DocumentList = ({
   id: activeId,
   query,
   documents,
-  onChangeQuery,
+  onChangeQuery
 }) =>
     <div className={css.self}>
       <header className={css.header}>
@@ -30,7 +30,7 @@ const DocumentList = ({
           <li
             key={id}
             className={classnames({
-              [css.active]: activeId == id
+              [css.active]: activeId === id
             })}
           >
             <Link
@@ -44,7 +44,7 @@ const DocumentList = ({
         )}
         <li
           className={classnames({
-            [css.active]: activeId == 'new'
+            [css.active]: activeId === 'new'
           })}
         >
           <Link
@@ -56,13 +56,13 @@ const DocumentList = ({
           </Link>
         </li>
       </ul>
-    </div>
+    </div>;
 
 DocumentList.propTypes = {
   id: PropTypes.string,
   query: PropTypes.string,
   documents: PropTypes.array.isRequired,
-  onChangeQuery: PropTypes.func.isRequired,
-}
+  onChangeQuery: PropTypes.func.isRequired
+};
 
-export default DocumentList
+export default DocumentList;

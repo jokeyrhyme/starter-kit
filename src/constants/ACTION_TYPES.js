@@ -1,4 +1,4 @@
-import defineActionTypes from '../utils/defineActionTypes'
+import defineActionTypes from '../utils/defineActionTypes';
 
 export default defineActionTypes({
   /*
@@ -16,7 +16,6 @@ export default defineActionTypes({
     CLEAR
   `,
 
-
   /*
    * Data model
    */
@@ -32,5 +31,5 @@ export default defineActionTypes({
   NAVIGATION: `
     START
     COMPLETE
-  `,
-})
+  `
+});

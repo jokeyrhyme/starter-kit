@@ -1,3 +1,3 @@
 export default {
-  identityProperty: 'APP_IDENTITY',
-}
+  identityProperty: 'APP_IDENTITY'
+};

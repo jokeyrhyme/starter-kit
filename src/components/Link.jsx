@@ -1,6 +1,5 @@
-import React, {PropTypes} from 'react'
-import ROUTES from '../constants/ROUTES'
-
+import React, {PropTypes} from 'react';
+import ROUTES from '../constants/ROUTES';
 
 const Link = ({
   name,
@@ -8,12 +7,12 @@ const Link = ({
   children,
   ...props
 }) =>
-  <a {...props} href={'#'+ROUTES.generate(name, options)}>{children}</a>
+  <a {...props} href={'#' + ROUTES.generate(name, options)}>{children}</a>;
 
 Link.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.object,
-  children: PropTypes.node.isRequired,
-}
+  children: PropTypes.node.isRequired
+};
 
-export default Link
+export default Link;

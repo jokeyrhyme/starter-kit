@@ -1,27 +1,27 @@
-import React, {PropTypes} from 'react'
+import React, {PropTypes} from 'react';
 
-import * as actions from '../actions/documentView'
-import css from './DocumentForm.css'
+import * as actions from '../actions/documentView';
+import css from './DocumentForm.css';
 
-function updater(original, prop, fn) {
-  return e => fn(Object.assign({}, original, {[prop]: e.target.value}))
+function updater (original, prop, fn) {
+  return (e) => fn(Object.assign({}, original, {[prop]: e.target.value}));
 }
 
-function preventDefault(fn) {
-  return e => {
-    e.preventDefault()
-    fn && fn(e)
-  }
+function preventDefault (fn) {
+  return (e) => {
+    e.preventDefault();
+    fn && fn(e);
+  };
 }
 
-const errorMap = (error, i) => <li className={css.error} key={i}>{error}</li>
+const errorMap = (error, i) => <li className={css.error} key={i}>{error}</li>;
 
 const DocumentForm = ({
   data,
   errors,
   onUpdate,
   onSubmit,
-  onCancel,
+  onCancel
 }) =>
     <form
       className={css.self}
@@ -61,14 +61,14 @@ const DocumentForm = ({
           Save
         </button>
       </footer>
-    </form>
+    </form>;
 
 DocumentForm.propTypes = {
   data: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onUpdate: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,
-  onCancel: PropTypes.func.isRequired,
-}
+  onCancel: PropTypes.func.isRequired
+};
 
-export default DocumentForm
+export default DocumentForm;

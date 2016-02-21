@@ -1,14 +1,12 @@
-import pick from 'object-pick'
-import typeReducers from '../../utils/typeReducers'
-import compact from '../../utils/compact'
-import ACTION_TYPES from '../../constants/ACTION_TYPES'
-
+import pick from 'object-pick';
+import typeReducers from '../../utils/typeReducers';
+import compact from '../../utils/compact';
+import ACTION_TYPES from '../../constants/ACTION_TYPES';
 
 const defaultState = {
   unsavedChanges: {},
-  saveErrors: {},
-}
-
+  saveErrors: {}
+};
 
 export default typeReducers(ACTION_TYPES.DOCUMENT_VIEW, defaultState, {
   // Update the current document data
@@ -16,8 +14,8 @@ export default typeReducers(ACTION_TYPES.DOCUMENT_VIEW, defaultState, {
     ...state,
     unsavedChanges: {
       ...state.unsavedChanges,
-      [id]: { ...state.unsavedChanges[id], ...data },
-    },
+      [id]: { ...state.unsavedChanges[id], ...data }
+    }
   }),
 
   // If there are fields marked as invalid which are now valid,
@@ -26,8 +24,8 @@ export default typeReducers(ACTION_TYPES.DOCUMENT_VIEW, defaultState, {
     ...state,
     saveErrors: {
       ...state.saveErrors,
-      [id]: compact(pick(state.saveErrors[id], Object.keys(errors || {}))),
-    },
+      [id]: compact(pick(state.saveErrors[id], Object.keys(errors || {})))
+    }
   }),
 
   // Set the errors to the passed in object
@@ -36,18 +34,18 @@ export default typeReducers(ACTION_TYPES.DOCUMENT_VIEW, defaultState, {
     saveErrors: {
       ...state.saveErrors,
       [id]: errors
-    },
+    }
   }),
 
   // Remove errors/data for an id
   CLEAR: (state, {id}) => ({
     unsavedChanges: {
       ...state.unsavedChanges,
-      [id]: null,
+      [id]: null
     },
     saveErrors: {
       ...state.saveErrors,
-      [id]: null,
-    },
-  }),
-})
+      [id]: null
+    }
+  })
+});

@@ -1,5 +1,4 @@
 # temporary / output files
-node_modules
 build
 dist
 dist-intermediate

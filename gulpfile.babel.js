@@ -1,18 +1,15 @@
-import del from "del";
-import path from "path";
-import gulp from "gulp";
-import open from "open";
-import gulpLoadPlugins from "gulp-load-plugins";
-import packageJson from "./package.json";
-import runSequence from "run-sequence";
-import webpack from "webpack";
-import webpackConfig from "./webpack.config";
-import WebpackDevServer from "webpack-dev-server";
-
+import del from 'del';
+import gulp from 'gulp';
+import open from 'open';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import packageJson from './package.json';
+import runSequence from 'run-sequence';
+import webpack from 'webpack';
+import webpackConfig from './webpack.config';
+import WebpackDevServer from 'webpack-dev-server';
 
 const PORT = process.env.PORT || 3000;
 const $ = gulpLoadPlugins({camelize: true});
-
 
 // Main tasks
 gulp.task('serve', () => runSequence('serve:clean', 'serve:index', 'serve:start'));
@@ -21,11 +18,11 @@ gulp.task('clean', ['dist:clean', 'serve:clean']);
 gulp.task('open', () => open('http://localhost:3000'));
 
 // Remove all built files
-gulp.task('serve:clean', cb => del('build', {dot: true}, cb));
-gulp.task('dist:clean', cb => del(['dist', 'dist-intermediate'], {dot: true}, cb));
+gulp.task('serve:clean', (cb) => del('build', {dot: true}, cb));
+gulp.task('dist:clean', (cb) => del(['dist', 'dist-intermediate'], {dot: true}, cb));
 
 // Copy static files across to our final directory
-gulp.task('serve:static', () => 
+gulp.task('serve:static', () =>
   gulp.src([
     'src/static/**'
   ])
@@ -34,7 +31,7 @@ gulp.task('serve:static', () =>
     .pipe($.size({title: 'static'}))
 );
 
-gulp.task('dist:static', () => 
+gulp.task('dist:static', () =>
   gulp.src([
     'src/static/**'
   ])
@@ -53,7 +50,7 @@ gulp.task('serve:index', () => {
 // Copy our index file and inject css/script imports for this build
 gulp.task('dist:index', () => {
   const app = gulp
-    .src(["*.{css,js}"], {cwd: 'dist-intermediate/generated'})
+    .src(['*.{css,js}'], {cwd: 'dist-intermediate/generated'})
     .pipe(gulp.dest('dist'));
 
   // Build the index.html using the names of compiled files
@@ -62,7 +59,7 @@ gulp.task('dist:index', () => {
       ignorePath: 'dist',
       starttag: '<!-- inject:app:{{ext}} -->'
     }))
-    .on("error", $.util.log)
+    .on('error', $.util.log)
     .pipe(gulp.dest('dist'));
 });
 
@@ -83,7 +80,7 @@ gulp.task('serve:start', ['serve:static'], () => {
 });
 
 // Create a distributable package
-gulp.task('dist:build', ['dist:static'], cb => {
+gulp.task('dist:build', ['dist:static'], (cb) => {
   const config = webpackConfig(false, 'dist-intermediate');
 
   webpack(config, (err, stats) => {
