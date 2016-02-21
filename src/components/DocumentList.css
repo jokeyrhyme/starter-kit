@@ -1,0 +1,31 @@
+.self {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  padding: 5px;
+}
+
+.query {
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.active {
+  background-color: #f0f0f0;
+}
+
+.link {
+  display: block;
+  padding: 5px;
+
+}
+.link:hover {
+  background-color: #f8f8f8;
+}

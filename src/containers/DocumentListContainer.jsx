@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react'
+
 import * as actions from '../actions/documentListView'
 import compose from '../utils/compose'
 import OneOrTwoColumnLayout from '../components/OneOrTwoColumnLayout'
 import DocumentList from '../components/DocumentList'
-
 
 function listPredicate(query) {
   return (
@@ -12,7 +12,6 @@ function listPredicate(query) {
     : ([id, data]) => data.title.replace(/\s+/g, '').indexOf(query) !== -1
   )
 }
-
 
 export default function DocumentListContainer({state, dispatch, children, id}) {
   const query = state.view.documentList

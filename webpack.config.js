@@ -45,6 +45,13 @@ export default (DEBUG, PATH, PORT=3000) => ({
           : ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!less-loader")
       },
 
+      // Load styles
+      { test: /\.css$/,
+        loader: DEBUG
+          ? "style!css?modules&sourceMap!autoprefixer"
+          : ExtractTextPlugin.extract("style-loader", "css-loader?modules&sourceMap!autoprefixer-loader")
+      },
+
       // Load images
       { test: /\.jpg/, loader: "url-loader?limit=10000&mimetype=image/jpg" },
       { test: /\.gif/, loader: "url-loader?limit=10000&mimetype=image/gif" },

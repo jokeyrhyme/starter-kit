@@ -1,9 +1,7 @@
-import './DocumentForm.less'
-
 import React, {PropTypes} from 'react'
-import * as actions from '../actions/documentView'
-import { pacomoTransformer } from '../utils/pacomo'
 
+import * as actions from '../actions/documentView'
+import css from './DocumentForm.css'
 
 function updater(original, prop, fn) {
   return e => fn(Object.assign({}, original, {[prop]: e.target.value}))
@@ -16,7 +14,7 @@ function preventDefault(fn) {
   }
 }
 
-const errorMap = (error, i) => <li className='error' key={i}>{error}</li>
+const errorMap = (error, i) => <li className={css.error} key={i}>{error}</li>
 
 const DocumentForm = ({
   data,
@@ -26,15 +24,16 @@ const DocumentForm = ({
   onCancel,
 }) =>
     <form
+      className={css.self}
       onSubmit={preventDefault(onSubmit)}
       noValidate={true}
     >
-      <ul className='errors'>
+      <ul className={css.errors}>
         {errors && Object.values(errors).map(errorMap)}
       </ul>
       <input
         type='text'
-        className='title'
+        className={css.title}
         placeholder='Title'
         onChange={updater(data, 'title', onUpdate)}
         value={data.title || ''}
@@ -42,21 +41,21 @@ const DocumentForm = ({
       />
       <textarea
         type='text'
-        className='content'
+        className={css.content}
         onChange={updater(data, 'content', onUpdate)}
         value={data.content || ''}
       />
-      <footer className='buttons'>
+      <footer className={css.buttons}>
         <button
           type='button'
-          className='cancel'
+          className={css.cancel}
           onClick={onCancel}
         >
           Cancel
         </button>
         <button
           type='submit'
-          className='submit'
+          className={css.submit}
           disabled={!onSubmit}
         >
           Save
@@ -72,4 +71,4 @@ DocumentForm.propTypes = {
   onCancel: PropTypes.func.isRequired,
 }
 
-export default pacomoTransformer(DocumentForm)
+export default DocumentForm

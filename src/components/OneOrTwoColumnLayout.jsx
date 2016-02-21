@@ -1,18 +1,17 @@
-import './OneOrTwoColumnLayout.less'
-
+import classnames from 'classnames'
 import React, {PropTypes} from 'react'
-import { pacomoTransformer } from '../utils/pacomo'
 
+import css from './OneOrTwoColumnLayout.css'
 
 const OneOrTwoColumnLayout = ({
   left,
   right,
-}) => 
-  <div>
-    <div className={{'left': true, 'left-open': left}}>
+}) =>
+  <div className={css.self}>
+    <div className={classnames({[css.left]: true, [css.leftOpen]: left})}>
       {left}
     </div>
-    <div className={{'right': true, 'right-open': right}}>
+    <div className={classnames({[css.right]: true, [css.rightOpen]: right})}>
       {right}
     </div>
   </div>
@@ -22,4 +21,4 @@ OneOrTwoColumnLayout.propTypes = {
   right: PropTypes.element,
 }
 
-export default pacomoTransformer(OneOrTwoColumnLayout)
+export default OneOrTwoColumnLayout

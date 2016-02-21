@@ -1,10 +1,9 @@
-import './DocumentList.less'
-
+import classnames from 'classnames'
 import React, {PropTypes} from 'react'
 import * as actions from '../actions/documentListView'
-import { pacomoTransformer } from '../utils/pacomo'
-import Link from './Link'
 
+import css from './DocumentList.css'
+import Link from './Link'
 
 function mapValue(fn) {
   return e => fn(e.target.value)
@@ -16,27 +15,26 @@ const DocumentList = ({
   documents,
   onChangeQuery,
 }) =>
-    <div>
-      <header className='header'>
+    <div className={css.self}>
+      <header className={css.header}>
         <input
-          className='query'
+          className={css.query}
           type="text"
           placeholder="Search..."
           value={query}
           onChange={mapValue(onChangeQuery)}
         />
       </header>
-      <ul className='list'>
+      <ul className={css.list}>
         {documents.map(([id, data]) =>
           <li
             key={id}
-            className={{
-              'document-item': true,
-              'document-item-active': activeId == id,
-            }}
+            className={classnames({
+              [css.active]: activeId == id
+            })}
           >
             <Link
-              className='document-link'
+              className={css.link}
               name='documentEdit'
               options={{id}}
             >
@@ -44,14 +42,13 @@ const DocumentList = ({
             </Link>
           </li>
         )}
-        <li 
-          className={{
-            'add-item': true,
-            'add-item-active': activeId == 'new',
-          }}
+        <li
+          className={classnames({
+            [css.active]: activeId == 'new'
+          })}
         >
           <Link
-            className='add-link'
+            className={css.link}
             name='documentEdit'
             options={{id: 'new'}}
           >
@@ -68,4 +65,4 @@ DocumentList.propTypes = {
   onChangeQuery: PropTypes.func.isRequired,
 }
 
-export default pacomoTransformer(DocumentList)
+export default DocumentList

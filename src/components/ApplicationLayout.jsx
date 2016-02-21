@@ -1,27 +1,26 @@
-import './ApplicationLayout.less'
-
+import classnames from 'classnames'
 import React, {PropTypes} from 'react'
-import { pacomoTransformer } from '../utils/pacomo'
-import Link from './Link'
 
+import css from './ApplicationLayout.css'
+import Link from './Link'
 
 const ApplicationLayout = ({
   children,
   locationName,
 }) =>
-  <div>
-    <nav className='navbar'>
+  <div className={css.self}>
+    <nav className={css.navbar}>
       <Link
         name='documentList'
-        className={{
+        className={classnames({
           'link': true,
-          'link-active': locationName == 'documentList' || locationName == 'documentEdit',
-        }}
+          [css.active]: locationName == 'documentList' || locationName == 'documentEdit',
+        })}
       >
         Documents
       </Link>
     </nav>
-    <main className='content'>
+    <main className={css.content}>
       {children}
     </main>
   </div>
@@ -31,4 +30,4 @@ ApplicationLayout.propTypes = {
   locationName: PropTypes.string,
 }
 
-export default pacomoTransformer(ApplicationLayout)
+export default ApplicationLayout
