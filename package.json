@@ -59,7 +59,7 @@
   "main": "static",
   "private": true,
   "scripts": {
-    "eslint": "eslint --fix .",
+    "eslint": "eslint --ext js,jsx --fix .",
     "fixpack": "fixpack",
     "gulp": "gulp",
     "open": "gulp open",

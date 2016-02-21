@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 
-import * as actions from '../actions/documentView';
 import css from './DocumentForm.css';
 
 function updater (original, prop, fn) {
@@ -23,45 +22,45 @@ const DocumentForm = ({
   onSubmit,
   onCancel
 }) =>
-    <form
-      className={css.self}
-      onSubmit={preventDefault(onSubmit)}
-      noValidate={true}
-    >
-      <ul className={css.errors}>
-        {errors && Object.values(errors).map(errorMap)}
-      </ul>
-      <input
-        type='text'
-        className={css.title}
-        placeholder='Title'
-        onChange={updater(data, 'title', onUpdate)}
-        value={data.title || ''}
-        autoFocus
-      />
-      <textarea
-        type='text'
-        className={css.content}
-        onChange={updater(data, 'content', onUpdate)}
-        value={data.content || ''}
-      />
-      <footer className={css.buttons}>
-        <button
-          type='button'
-          className={css.cancel}
-          onClick={onCancel}
-        >
-          Cancel
-        </button>
-        <button
-          type='submit'
-          className={css.submit}
-          disabled={!onSubmit}
-        >
-          Save
-        </button>
-      </footer>
-    </form>;
+  <form
+    className={css.self}
+    onSubmit={preventDefault(onSubmit)}
+    noValidate
+  >
+    <ul className={css.errors}>
+      {errors && Object.values(errors).map(errorMap)}
+    </ul>
+    <input
+      type='text'
+      className={css.title}
+      placeholder='Title'
+      onChange={updater(data, 'title', onUpdate)}
+      value={data.title || ''}
+      autoFocus
+    />
+    <textarea
+      type='text'
+      className={css.content}
+      onChange={updater(data, 'content', onUpdate)}
+      value={data.content || ''}
+    />
+    <footer className={css.buttons}>
+      <button
+        type='button'
+        className={css.cancel}
+        onClick={onCancel}
+      >
+        Cancel
+      </button>
+      <button
+        type='submit'
+        className={css.submit}
+        disabled={!onSubmit}
+      >
+        Save
+      </button>
+    </footer>
+  </form>;
 
 DocumentForm.propTypes = {
   data: PropTypes.object.isRequired,

@@ -1,31 +1,38 @@
-import React, {PropTypes} from 'react'
+import React, {PropTypes} from 'react';
 
-import * as actions from '../actions/documentListView'
-import compose from '../utils/compose'
-import OneOrTwoColumnLayout from '../components/OneOrTwoColumnLayout'
-import DocumentList from '../components/DocumentList'
+import * as actions from '../actions/documentListView';
+import compose from '../utils/compose';
+import OneOrTwoColumnLayout from '../components/OneOrTwoColumnLayout';
+import DocumentList from '../components/DocumentList';
 
-function listPredicate(query) {
+function listPredicate (query) {
   return (
     !query
     ? () => true
     : ([id, data]) => data.title.replace(/\s+/g, '').indexOf(query) !== -1
-  )
+  );
 }
 
-export default function DocumentListContainer({state, dispatch, children, id}) {
-  const query = state.view.documentList
+export default function DocumentListContainer ({state, dispatch, children, id}) {
+  const query = state.view.documentList;
   const props = {
     id,
     query,
     documents: Object
       .entries(state.data.document)
       .filter(listPredicate(query)),
-    onChangeQuery: compose(dispatch, actions.updateQuery),
-  }
+    onChangeQuery: compose(dispatch, actions.updateQuery)
+  };
 
   return <OneOrTwoColumnLayout
     left={<DocumentList {...props} />}
     right={children}
-  />
+  />;
 }
+
+DocumentListContainer.propTypes = {
+  children: PropTypes.element,
+  dispatch: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  state: PropTypes.object.isRequired
+};
