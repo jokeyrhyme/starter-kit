@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
+    "ava": "^0.12.0",
     "babel-core": "^6.1.4",
     "babel-loader": "^6.1.0",
     "babel-plugin-transform-runtime": "^6.1.4",
@@ -24,12 +25,13 @@
     "babel-preset-stage-0": "^6.1.2",
     "babel-register": "^6.1.4",
     "css-loader": "^0.23.1",
+    "css-modules-require-hook": "2.1.0",
     "del": "^2.2.0",
     "eslint": "^2.2.0",
     "eslint-config-standard": "^5.1.0",
-    "eslint-config-standard-react": "2.3.0",
+    "eslint-config-standard-react": "^2.3.0",
     "eslint-plugin-promise": "^1.0.8",
-    "eslint-plugin-react": "4.0.0",
+    "eslint-plugin-react": "^4.0.0",
     "eslint-plugin-standard": "^1.3.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.4",
@@ -46,7 +48,8 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.0",
     "node-libs-browser": "^1.0.0",
-    "npm-run-all": "1.5.1",
+    "npm-run-all": "^1.5.1",
+    "nyc": "^5.6.0",
     "open": "0.0.5",
     "redux-devtools": "^3.1.1",
     "run-sequence": "^1.1.0",
@@ -59,10 +62,14 @@
   "main": "static",
   "private": true,
   "scripts": {
-    "eslint": "eslint --ext js,jsx --fix .",
+    "ava": "nyc ava --require css-modules-require-hook --require babel-register --require babel-polyfill",
+    "eslint": "eslint --cache --ext js,jsx --fix .",
     "fixpack": "fixpack",
     "gulp": "gulp",
+    "nyc": "nyc check-coverage -b 0 -f 0 -l 50 -s 50",
     "open": "gulp open",
-    "start": "gulp serve"
+    "posttest": "npm-run-all fixpack eslint",
+    "start": "gulp serve",
+    "test": "npm-run-all -s ava"
   }
 }

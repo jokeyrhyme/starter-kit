@@ -1,4 +1,6 @@
 # temporary / output files
+.eslintcache
+.nyc_output
 node_modules
 build
 dist
