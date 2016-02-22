@@ -6,7 +6,7 @@ export default (DEBUG, PATH, PORT = 3000) => ({
   entry: (DEBUG ? [
     `webpack-dev-server/client?http://localhost:${PORT}`
   ] : []).concat([
-    './src/main.less',
+    './src/main.css',
     'babel-polyfill',
     './src/main'
   ]),
@@ -38,17 +38,10 @@ export default (DEBUG, PATH, PORT = 3000) => ({
       },
 
       // Load styles
-      { test: /\.less$/,
-        loader: DEBUG
-          ? 'style!css!autoprefixer!less'
-          : ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!less-loader')
-      },
-
-      // Load styles
       { test: /\.css$/,
         loader: DEBUG
-          ? 'style!css?modules&sourceMap!autoprefixer'
-          : ExtractTextPlugin.extract('style-loader', 'css-loader?modules&sourceMap!autoprefixer-loader')
+          ? 'style!css?localIdentName=[name]-[local]-[hash:base64:5]&modules&sourceMap!autoprefixer'
+          : ExtractTextPlugin.extract('style-loader', 'css-loader?modules!autoprefixer-loader')
       },
 
       // Load images

@@ -3,6 +3,7 @@ import reduxThunk from 'redux-thunk';
 import reduxMulti from 'redux-multi';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 
+import './main.css';
 import * as navigation from './actions/navigation';
 import actors from './actors';
 import rootReducer from './reducers';
